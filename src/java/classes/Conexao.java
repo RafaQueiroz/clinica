@@ -30,11 +30,13 @@ public class Conexao {
    }  
      
   
-   public void inserirDados(String email, String senha, int tipo){  
+   public void inserirDados(String nome, String email, String senha, int tipo){  
      
       try {  
-         String query = "insert into usario(emailUsr, senhaUsr, tipoUsr) values('"+email+"','"+senha+"',"+tipo+"')";  
-         stm.executeUpdate(query);  
+         String query = "insert into usuario(id_usr, nome_usr,email_usr, senha_usr, adm_usr)"
+                    + " values(s_usuario.nextval,'"+nome+"','"+email+"','"+senha+"',"+tipo+")";  
+         stm.executeUpdate(query);
+         con.commit();
          System.out.println("Registro inserido");
       }catch (SQLException e){System.out.println("Erro na inserção:" + e.getMessage());}  
         
@@ -69,6 +71,20 @@ public class Conexao {
       }catch (SQLException e){System.out.println("Erro na inserção:" + e.getMessage());}  
         
       return res;  
-   }     
+   }
+   public void inserirExame(String nome, String tipo, String prep){
+      try {  
+         String query ="insert into usuario_clinica(";
+                 query += "id_exame,nome_exame,tipo_exame,prep_exame)" ;
+                 query += "values(s_exame.nextval,'"+nome+"','"+tipo+"','"+prep+"')";  
+         stm.executeUpdate(query);
+         System.out.println("Usuario inserido");
+      }catch (SQLException e){System.out.println("Erro na inserção:" + e.getMessage());}   
+   }
+   public ResultSet buscaExame(String nomeMed) throws SQLException{
+       ResultSet res = stm.executeQuery("select * from exame where nome_med= '"+ nomeMed +"'");
+       System.out.println("Buscou Exame");
+       return res;
+   } 
 }  
     

@@ -13,6 +13,8 @@ import classes.Conexao;
  * @author rafael
  */
 public class Usuario {
+    
+    public String nome;
     public String email;
     public String senha;
     public int tipo;
@@ -29,6 +31,15 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+    
 
     public int getTipo() {
         return tipo;

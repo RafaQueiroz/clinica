@@ -9,15 +9,17 @@
 <!DOCTYPE html>
 <html>
     <%
-        Usuario usr = (Usuario) request.getAttribute("usr");
+        HttpSession sessao = (HttpSession) request.getSession();
+        Usuario usr = (Usuario) sessao.getAttribute("usr");
+        
     %>
     <head>
-        <title>TODO supply a title</title>
+        <title>Clinica</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./css/main.js"/>
+        <link rel="stylesheet" href="main.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-        <script src="./javascript/main.js"></script>        
+        <script src="./javascript/main.js"></script>
         <script>
             $(document).ready(function(){
                  exibeMenu(determinaTipo(<%= usr.getTipo()%>));        
@@ -26,10 +28,11 @@
     </head>
     <body>
         <div class="container">
-            <%@page import="./includes/menu.jsp"%>
+            <%@include file="includes/menu.jsp"%>
         </div>
         <div>
             <h1>Bem vindo a sua Home</h1>
         </div>
+        <a href="index.html">Logout</a>
     </body>
 </html>
